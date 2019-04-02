@@ -5,11 +5,13 @@
  */
 package Chess;
 
+import boardgame.BoardException;
+
 /**
  *
  * @author carlos
  */
-public class ChessException extends RuntimeException{
+public class ChessException extends BoardException{
     private static final long serialVersionUID = 1L;
     
     public ChessException(String msg) {
