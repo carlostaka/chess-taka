@@ -48,12 +48,12 @@ public class UI {
     public static ChessPosition readChessPosition (Scanner sc) {
         try{
         String s = sc.nextLine();
-        char column = s.charAt(0);
+        char column = Character.toUpperCase(s.charAt(0));
         int row = Integer.parseInt(s.substring(1));
         return new ChessPosition(column, row);
         }
         catch (RuntimeException e) {
-            throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8");
+            throw new InputMismatchException("Error reading ChessPosition. Valid values are from A1 to H8");
         }
     }
     
@@ -63,9 +63,15 @@ public class UI {
         printCapturedPieces(captured);
         System.out.println();
         System.out.println("Turn: " + chessMatch.getTurn());
-        System.out.println("Waiting Player: " + chessMatch.getCurrentPlayer());
-        if (chessMatch.getCheck()){
-            System.out.println("Check!");
+        if(!chessMatch.getCheckMate()){
+            System.out.println("Waiting Player: " + chessMatch.getCurrentPlayer());
+            if (chessMatch.getCheck()){
+                System.out.println("Check!");
+            }
+        }
+        else {
+            System.out.println("Check Mate! ");
+            System.out.println("Winner: " + chessMatch.getCurrentPlayer());
         }
     }
     
